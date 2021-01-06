@@ -21,9 +21,14 @@ namespace RestockingMicroService.Proxies
             return await _context.Suppliers.FirstOrDefaultAsync(a => a.SupplierID == Id);
         }
 
-        public async Task<List<Suppliers>> GetSuppliers()
+        public Task<List<Products>> GetSupplierProducts(int Id)
         {
-            return await _context.Suppliers.ToListAsync();
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Suppliers>> GetSuppliers()
+        {
+            throw new NotImplementedException();
         }
     }
 }

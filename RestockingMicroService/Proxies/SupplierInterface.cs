@@ -11,5 +11,7 @@ namespace RestockingMicroService.Proxies
         public Task<List<Suppliers>> GetSuppliers();
 
         public Task<Suppliers> GetSupplier(int Id);
+
+        public Task<List<Products>> GetSupplierProducts(int Id);
     }
 }

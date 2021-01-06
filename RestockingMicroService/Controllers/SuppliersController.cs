@@ -13,10 +13,11 @@ namespace RestockingMicroService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Policy = "StaffOAuthorised")]
+    //[Authorize(Policy = "StaffOAuthorised")]
     public class SuppliersController : ControllerBase
     {
         private readonly SupplierInterface suppliers;
+        
 
         public SuppliersController(SupplierInterface context)
         {
@@ -31,10 +32,10 @@ namespace RestockingMicroService.Controllers
         }
 
         // GET: api/Suppliers/5
-        [HttpGet("/GetSupplier/{id}")]
-        public async Task<ActionResult<Suppliers>> GetSuppliers(int id)
+        [HttpGet("/GetSupplierProducts/{id}")]
+        public async Task<List<Products>> GetSupplierProducts(int id)
         {
-            return await suppliers.GetSupplier(id);
+            return await suppliers.GetSupplierProducts(id);
         }
     }
 }

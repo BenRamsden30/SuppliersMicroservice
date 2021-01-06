@@ -49,12 +49,21 @@ namespace RestockingMicroService
             services.AddControllers();
 
             services.AddDbContext<RestockingMicroServiceContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("RestockingMicroServiceContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("RestockingMicroServiceContext"), x =>
+                    {
+                        x.MigrationsHistoryTable("__EFMigrationsHistory", "Suppliers");
+                        x.MigrationsHistoryTable("__EFMigrationsHistory", "Restocks");
+                    }));
 
             if (Enviro.IsDevelopment())
             {
                 services.AddSingleton<SupplierInterface, SuppliersFakeProxy>();
-
+                //Add fake for restocks
+            }
+            else
+            {
+                services.AddScoped<SupplierInterface, SupplierRealProxy>();
+                //Add real for restocks
             }
         }
 
