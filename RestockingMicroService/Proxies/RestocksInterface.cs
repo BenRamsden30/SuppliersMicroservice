@@ -20,7 +20,7 @@ namespace RestockingMicroService.Proxies
                                   int Qty,
                                   string ProductName,
                                   string ProductEan,
-                                  decimal TotalPrice,
+                                  double TotalPrice,
                                   int SupplierID);
 
         public Task DeleteRestock(int Id);

@@ -21,7 +21,7 @@ namespace RestockingMicroService.Proxies
             };
         }
 
-        public Task CreateRestock(string AccountName, int ProductID, int Qty, string ProductName, string ProductEan, decimal TotalPrice, int SupplierID)
+        public Task CreateRestock(string AccountName, int ProductID, int Qty, string ProductName, string ProductEan, double TotalPrice, int SupplierID)
         {
             restocks.Add(new Restocks { RestockId = 3, AccountName = null, ProductID = 3, Gty = 27, CardNumber = null, Date = DateTime.Now, ProductEan = "I give up", ProductName = "TAdded", SupplierID = 1, TotalPrice = 42.00, Approved = false });
             return Task.FromResult(restocks);
