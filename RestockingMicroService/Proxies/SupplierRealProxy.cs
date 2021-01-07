@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using RestockingMicroService.Data;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace RestockingMicroService.Proxies
         public SupplierRealProxy(RestockingMicroServiceContext _context)
         {
             this._context = _context;
+           
         }
 
         public async Task<Suppliers> GetSupplier(int Id)
@@ -22,13 +24,16 @@ namespace RestockingMicroService.Proxies
             return await _context.Suppliers.FirstOrDefaultAsync(a => a.SupplierID == Id);
         }
 
+        
+
+
         public async Task<List<Products>> GetSupplierProducts(int Id)
         {
             var Sup = await _context.Suppliers.FirstOrDefaultAsync(s => s.SupplierID == Id);
             string Address = Sup.Webaddress;
 
             //Builds the location to be aimed for
-            HttpClient client = new HttpClient();
+            var client = new HttpClient();
             var RequestBuilder = new UriBuilder(Address);
             RequestBuilder.Path = "/Api/Product";
             String url = RequestBuilder.ToString();
@@ -43,15 +48,14 @@ namespace RestockingMicroService.Proxies
             }
             else
             {
-
+                return null;
             }
-
-            throw new NotImplementedException();
+            
         }
 
-        public Task<List<Suppliers>> GetSuppliers()
+        public async Task<List<Suppliers>> GetSuppliers()
         {
-            throw new NotImplementedException();
+            return await _context.Suppliers.ToListAsync();
         }
     }
 }
