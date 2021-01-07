@@ -22,15 +22,17 @@ namespace RestockingMicroService.Controllers
         }
 
         [HttpPost ("/CreateRestock/")]
-        public async Task<Restocks> CreateRestock(string AccountName, int ProductID, int Qty, string ProductName, string ProductEan, decimal TotalPrice, int SupplierID)
+        public async Task<IActionResult> CreateRestock(string AccountName, int ProductID, int Qty, string ProductName, string ProductEan, decimal TotalPrice, int SupplierID)
         {
-            return await restocks.CreateRestock(AccountName, ProductID, Qty, ProductName, ProductEan, TotalPrice, SupplierID);
+            await restocks.CreateRestock(AccountName, ProductID, Qty, ProductName, ProductEan, TotalPrice, SupplierID);
+            return Ok();
         }
 
         [HttpPost("/DeleteRestock/(id)")]
         public async Task<Restocks> DeleteRestock(int Id)
         {
-            return await restocks.DeleteRestock(Id);
+            //return await restocks.DeleteRestock(Id);
+            throw new NotImplementedException();
         }
 
         [HttpGet("/GetRestocks")]
