@@ -157,3 +157,5 @@ C:\Users\Ben-R\source\repos\RestockingMicroService\RestockingMicroService\bin\De
 C:\Users\Ben-R\source\repos\RestockingMicroService\RestockingMicroService\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Ben-R\source\repos\RestockingMicroService\RestockingMicroService\obj\Debug\netcoreapp3.1\RestockingMicroService.csproj.CoreCompileInputs.cache
 C:\Users\Ben-R\source\repos\RestockingMicroService\RestockingMicroService\obj\Debug\netcoreapp3.1\RestockingMicroService.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Ben-R\source\repos\RestockingMicroService\RestockingMicroService\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+C:\Users\Ben-R\source\repos\RestockingMicroService\RestockingMicroService\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
