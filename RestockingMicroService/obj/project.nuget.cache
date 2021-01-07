@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "m36eycRMdUykE64ss7JNhYDmyCLZMoNWMykBUXNq4v+/8d0Uoc0VB000afCmjVSrVI6QiOxMm1Mss47iLH8Hkw==",
+  "dgSpecHash": "obCkO6WzxIf6F1NX8XiMgDsDFgmlnow9rZ6gS/Wvhx90wFCC2taAoduuIIMRerj5C2Az9ykmpjJfQ91lOYxrsQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ben-R\\source\\repos\\RestockingMicroService\\RestockingMicroService\\RestockingMicroService.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,7 @@
     "C:\\Users\\Ben-R\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.10\\microsoft.entityframeworkcore.tools.3.1.10.nupkg.sha512",
     "C:\\Users\\Ben-R\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\3.1.10\\microsoft.extensions.caching.abstractions.3.1.10.nupkg.sha512",
     "C:\\Users\\Ben-R\\.nuget\\packages\\microsoft.extensions.caching.memory\\3.1.10\\microsoft.extensions.caching.memory.3.1.10.nupkg.sha512",
+    "C:\\Users\\Ben-R\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\Ben-R\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.0\\microsoft.extensions.dependencyinjection.5.0.0.nupkg.sha512",
     "C:\\Users\\Ben-R\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\Ben-R\\.nuget\\packages\\microsoft.extensions.dependencymodel\\3.1.6\\microsoft.extensions.dependencymodel.3.1.6.nupkg.sha512",
