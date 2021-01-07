@@ -21,16 +21,16 @@ namespace RestockingMicroService.Controllers
             restocks = context;
         }
 
-        [HttpGet ("/CreateRestock/")]
-        public async Task<void> CreateRestock(string AccountName, int ProductID, int Qty, string ProductName, string ProductEan, decimal TotalPrice, int SupplierID)
+        [HttpPost ("/CreateRestock/")]
+        public async Task<Restocks> CreateRestock(string AccountName, int ProductID, int Qty, string ProductName, string ProductEan, decimal TotalPrice, int SupplierID)
         {
             return await restocks.CreateRestock(AccountName, ProductID, Qty, ProductName, ProductEan, TotalPrice, SupplierID);
         }
 
         [HttpPost("/DeleteRestock/(id)")]
-        public async Task<List<Restocks>> DeleteRestock(int? Id, string? AccountName, int? SupplierID, bool? Approved)
+        public async Task<Restocks> DeleteRestock(int Id)
         {
-            return await restocks.GetRestock(Id, AccountName, SupplierID, Approved);
+            return await restocks.DeleteRestock(Id);
         }
 
         [HttpGet("/GetRestocks")]

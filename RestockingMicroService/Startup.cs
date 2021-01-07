@@ -64,12 +64,12 @@ namespace RestockingMicroService
             if (Enviro.IsDevelopment())
             {
                 services.AddSingleton<SupplierInterface, SuppliersFakeProxy>();
-                //Add fake for restocks
+                services.AddSingleton<RestocksInterface, RestockFakeProxy>();
             }
             else
             {
                 services.AddScoped<SupplierInterface, SupplierRealProxy>();
-                //Add real for restocks
+                services.AddScoped<RestocksInterface, RestocksRealProxy>();
             }
 
             services.AddHttpClient("Supplier")
