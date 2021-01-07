@@ -15,8 +15,8 @@ namespace RestockingMicroService.Proxies
         {
             suppliers = new List<Suppliers>
             {
-                new Suppliers { SupplierID = 1, SupplierName = "Help", URL = "abc.com" },
-                new Suppliers { SupplierID = 2, SupplierName = "Me", URL = "xyz.net" }
+                new Suppliers { SupplierID = 1, SupplierName = "Help", Webaddress = "abc.com" },
+                new Suppliers { SupplierID = 2, SupplierName = "Me", Webaddress = "xyz.net" }
             };
 
             products = new List<Products>

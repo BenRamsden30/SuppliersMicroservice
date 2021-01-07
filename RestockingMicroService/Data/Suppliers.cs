@@ -13,6 +13,6 @@ namespace RestockingMicroService.Data
 
         public string SupplierName { get; set; }
 
-        public string URL { get; set; }
+        public string Webaddress { get; set; }
     }
 }
