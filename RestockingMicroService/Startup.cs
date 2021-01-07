@@ -41,9 +41,15 @@ namespace RestockingMicroService
 
             services.AddAuthorization(options =>
             {
+                //Staff authorising using oath
                 options.AddPolicy("StaffOAuthorised", builder =>
                 {
                     builder.RequireClaim("role", "Staff");
+                });
+
+                options.AddPolicy("ManegerOAuthorised", builder =>
+                {
+                    builder.RequireClaim("role", "Manager");
                 });
             });
 

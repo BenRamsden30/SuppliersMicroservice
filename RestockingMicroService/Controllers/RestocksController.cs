@@ -10,7 +10,7 @@ namespace RestockingMicroService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Policy = "StaffOAuthorised")]
+    //[Authorize(Policy = "ManegerOAuthorised")]
     public class RestocksController : ControllerBase
     {
         private readonly RestocksInterface restocks;
@@ -22,7 +22,7 @@ namespace RestockingMicroService.Controllers
         }
 
         [HttpPost ("/CreateRestock/")]
-        public async Task<IActionResult> CreateRestock(string AccountName, int ProductID, int Qty, string ProductName, string ProductEan, decimal TotalPrice, int SupplierID)
+        public async Task<IActionResult> CreateRestock(string AccountName, int ProductID, int Qty, string ProductName, string ProductEan, double TotalPrice, int SupplierID)
         {
             await restocks.CreateRestock(AccountName, ProductID, Qty, ProductName, ProductEan, TotalPrice, SupplierID);
             return Ok();
