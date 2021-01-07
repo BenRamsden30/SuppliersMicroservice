@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using RestockingMicroService.Data;
 using RestockingMicroService.Proxies;
 using System.IdentityModel.Tokens.Jwt;
+using System;
+using System.Net.Http;
+using Polly;
+using Polly.Extensions.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace RestockingMicroService
 {
@@ -28,7 +26,10 @@ namespace RestockingMicroService
         public IConfiguration Configuration { get; }
         public IWebHostEnvironment Enviro { get; }
 
+
+
         // This method gets called by the runtime. Use this method to add services to the container.
+        [Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
@@ -53,6 +54,11 @@ namespace RestockingMicroService
                     {
                         x.MigrationsHistoryTable("__EFMigrationsHistory", "Suppliers");
                         x.MigrationsHistoryTable("__EFMigrationsHistory", "Restocks");
+                        x.EnableRetryOnFailure(
+                            maxRetryCount: 10,
+                            maxRetryDelay: TimeSpan.FromSeconds(30),
+                            errorNumbersToAdd: null
+                            );
                     }));
 
             if (Enviro.IsDevelopment())
@@ -65,6 +71,24 @@ namespace RestockingMicroService
                 services.AddScoped<SupplierInterface, SupplierRealProxy>();
                 //Add real for restocks
             }
+
+            services.AddHttpClient("supplier")
+                .SetHandlerLifetime(TimeSpan.FromMinutes(5))
+                .AddPolicyHandler(GetRetryPolicy());
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+        }
+
+        private IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+        {
+            return HttpPolicyExtensions
+                // HttpRequestException, 5XX and 408  
+                .HandleTransientHttpError()
+                // 404  
+                .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
+                // Retry two times after delay  
+                .WaitAndRetryAsync(2, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)))
+                ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
