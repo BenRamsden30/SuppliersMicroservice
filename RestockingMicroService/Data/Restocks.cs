@@ -26,7 +26,7 @@ namespace RestockingMicroService.Data
 
         public string ProductEan { get; set; }
 
-        public decimal TotalPrice { get; set; }
+        public double TotalPrice { get; set; }
 
         public int SupplierID { get; set; }
 

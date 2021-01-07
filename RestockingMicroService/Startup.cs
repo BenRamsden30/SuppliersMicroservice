@@ -72,7 +72,7 @@ namespace RestockingMicroService
                 //Add real for restocks
             }
 
-            services.AddHttpClient("supplier")
+            services.AddHttpClient("Supplier")
                 .SetHandlerLifetime(TimeSpan.FromMinutes(5))
                 .AddPolicyHandler(GetRetryPolicy());
 
