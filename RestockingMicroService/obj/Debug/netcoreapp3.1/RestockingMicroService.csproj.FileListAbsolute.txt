@@ -183,3 +183,6 @@ C:\Users\Ben-R\source\repos\RestockingMicroService\RestockingMicroService\bin\De
 C:\Users\Ben-R\source\repos\RestockingMicroService\RestockingMicroService\bin\Debug\netcoreapp3.1\HttpClientFactoryLite.dll
 C:\Users\Ben-R\source\repos\RestockingMicroService\RestockingMicroService\bin\Debug\netcoreapp3.1\Polly.dll
 C:\Users\Ben-R\source\repos\RestockingMicroService\RestockingMicroService\bin\Debug\netcoreapp3.1\Polly.Extensions.Http.dll
+C:\Users\Ben-R\source\repos\RestockingMicroService\RestockingMicroService\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Http.Polly.dll
+C:\Users\Ben-R\source\repos\RestockingMicroService\RestockingMicroService\obj\Debug\netcoreapp3.1\RestockingMicroService.csproj.CoreCompileInputs.cache
+C:\Users\Ben-R\source\repos\RestockingMicroService\RestockingMicroService\obj\Debug\netcoreapp3.1\RestockingMicroService.MvcApplicationPartsAssemblyInfo.cache

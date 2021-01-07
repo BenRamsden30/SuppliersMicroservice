@@ -32,6 +32,7 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "3.1.10",
           "Microsoft.EntityFrameworkCore.Tools": "3.1.10",
           "Microsoft.Extensions.Http": "5.0.0",
+          "Microsoft.Extensions.Http.Polly": "5.0.1",
           "Microsoft.TeamFoundationServer.ExtendedClient": "16.153.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.4",
           "Polly.Extensions.Http": "3.0.0",
@@ -952,6 +953,22 @@
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.Extensions.Http.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Http.Polly/5.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.Http": "5.0.0",
+          "Polly": "7.1.0",
+          "Polly.Extensions.Http": "3.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Http.Polly.dll": {
+            "assemblyVersion": "5.0.1.0",
+            "fileVersion": "5.0.120.58002"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Http.Polly.dll": {}
         }
       },
       "Microsoft.Extensions.Logging/5.0.0": {
@@ -4617,6 +4634,13 @@
       "sha512": "sha512-kT1ijDKZuSUhBtYoC1sXrmVKP7mA08h9Xrsr4VrS/QOtiKCEtUTTd7dd3XI9dwAb46tZSak13q/zdIcr4jqbyg==",
       "path": "microsoft.extensions.http/5.0.0",
       "hashPath": "microsoft.extensions.http.5.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Http.Polly/5.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Tzf+x8HVDhri9dkIGCGOP5RVjgXnTZuBcwZHr0sW6KAtVGPDU0xEDXPDpoW5vwq/K12dMI75vuapUtMw0d/pIw==",
+      "path": "microsoft.extensions.http.polly/5.0.1",
+      "hashPath": "microsoft.extensions.http.polly.5.0.1.nupkg.sha512"
     },
     "Microsoft.Extensions.Logging/5.0.0": {
       "type": "package",

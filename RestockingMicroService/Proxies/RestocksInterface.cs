@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RestockingMicroService.Proxies
 {
-    interface RestocksInterface
+    public interface RestocksInterface
     {
         public Task<List<Restocks>> GetRestocks();
 
