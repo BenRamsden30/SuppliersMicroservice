@@ -25,7 +25,7 @@ namespace RestockingMicroService.Test
             restocks = new List<Restocks>
             {
                 new Restocks{RestockId = 1, AccountName = null,  ProductID = 1, Gty = 6, Date = DateTime.Now, ProductEan = "What is this?", ProductName = "Test Item 1", SupplierID = 1, TotalPrice = 27.50, Approved = false },
-                new Restocks{RestockId = 2, AccountName = null,  ProductID = 6, Gty = 18, Date = DateTime.Now, ProductEan = "Still don't know", ProductName = "Item test 2", SupplierID = 2, TotalPrice = 69.69, Approved = true }
+                new Restocks{RestockId = 2, AccountName = "Help",  ProductID = 6, Gty = 18, Date = DateTime.Now, ProductEan = "Still don't know", ProductName = "Item test 2", SupplierID = 2, TotalPrice = 69.69, Approved = true }
             };
 
             restocksMock = new Mock<RestocksInterface>(MockBehavior.Strict);
@@ -189,7 +189,7 @@ namespace RestockingMicroService.Test
 
             //Checks the result is what it is desired to be
             restocksMock.Verify();
-            restocksMock.Verify(m => m.GetRestock(0, null, 1, null), Times.Once);
+            restocksMock.Verify(m => m.GetRestock(1, null, null, null), Times.Once);
         }
 
         //Testing for get restock with filtering
@@ -197,11 +197,11 @@ namespace RestockingMicroService.Test
         public async Task TestGetRestockWithAccountName()
         {
             //Sets up the controlle rand the method that is to be tested
-            restocksMock.Setup(s => s.GetRestock(null, null, null, null)).ReturnsAsync(restocks);
+            restocksMock.Setup(s => s.GetRestock(null, "Help", null, null)).ReturnsAsync(restocks);
             var ResController = new RestocksController(restocksMock.Object);
 
             //Sets up the result from the controller
-            var result = await ResController.GetRestock(null, null, null, null);
+            var result = await ResController.GetRestock(null, "Help", null, null);
 
             //Checks the response data section by section
             Assert.IsNotNull(result);
@@ -228,7 +228,7 @@ namespace RestockingMicroService.Test
 
             //Checks the result is what it is desired to be
             restocksMock.Verify();
-            restocksMock.Verify(m => m.GetRestock(null, null, null, null), Times.Once);
+            restocksMock.Verify(m => m.GetRestock(null, "Help", null, null), Times.Once);
         }
 
         //Testing for get restock with filtering
@@ -240,7 +240,7 @@ namespace RestockingMicroService.Test
             var ResController = new RestocksController(restocksMock.Object);
 
             //Sets up the result from the controller
-            var result = await ResController.GetRestock(null, null, null, null);
+            var result = await ResController.GetRestock(null, null, 1, null);
 
             //Checks the response data section by section
             Assert.IsNotNull(result);
@@ -267,7 +267,7 @@ namespace RestockingMicroService.Test
 
             //Checks the result is what it is desired to be
             restocksMock.Verify();
-            restocksMock.Verify(m => m.GetRestock(null, null, null, null), Times.Once);
+            restocksMock.Verify(m => m.GetRestock(null, null, 1, null), Times.Once);
         }
 
         //Testing for get restock with filtering
@@ -279,7 +279,7 @@ namespace RestockingMicroService.Test
             var ResController = new RestocksController(restocksMock.Object);
 
             //Sets up the result from the controller
-            var result = await ResController.GetRestock(null, null, null, null);
+            var result = await ResController.GetRestock(null, null, null, true);
 
             //Checks the response data section by section
             Assert.IsNotNull(result);
@@ -306,7 +306,124 @@ namespace RestockingMicroService.Test
 
             //Checks the result is what it is desired to be
             restocksMock.Verify();
-            restocksMock.Verify(m => m.GetRestock(null, null, null, null), Times.Once);
+            restocksMock.Verify(m => m.GetRestock(null, null, null, true), Times.Once);
+        }
+
+        //Testing for get restock with filtering
+        [TestMethod]
+        public async Task TestGetRestockWithCombo1()
+        {
+            //Sets up the controlle rand the method that is to be tested
+            restocksMock.Setup(s => s.GetRestock(null, "Help", 1, null)).ReturnsAsync(restocks);
+            var ResController = new RestocksController(restocksMock.Object);
+
+            //Sets up the result from the controller
+            var result = await ResController.GetRestock(null, "Help", 1, null);
+
+            //Checks the response data section by section
+            Assert.IsNotNull(result);
+            var objResult = result as OkObjectResult;
+            Assert.IsNotNull(objResult);
+            var restocksResult = objResult.Value as IEnumerable<Restocks>;
+            Assert.IsNotNull(restocksResult);
+            var restocksResultList = restocksResult.ToList();
+            Assert.AreEqual(restocks.Count, restocksResultList.Count);
+            for (int i = 0; i < restocks.Count; ++i)
+            {
+                Assert.AreEqual(restocks[i].SupplierID, restocksResultList[i].SupplierID);
+                Assert.AreEqual(restocks[i].AccountName, restocksResultList[i].AccountName);
+                Assert.AreEqual(restocks[i].Approved, restocksResultList[i].Approved);
+                Assert.AreEqual(restocks[i].Date, restocksResultList[i].Date);
+                Assert.AreEqual(restocks[i].Gty, restocksResultList[i].Gty);
+                Assert.AreEqual(restocks[i].ProductEan, restocksResultList[i].ProductEan);
+                Assert.AreEqual(restocks[i].ProductID, restocksResultList[i].ProductID);
+                Assert.AreEqual(restocks[i].Approved, restocksResultList[i].Approved);
+                Assert.AreEqual(restocks[i].ProductName, restocksResultList[i].ProductName);
+                Assert.AreEqual(restocks[i].RestockId, restocksResultList[i].RestockId);
+                Assert.AreEqual(restocks[i].TotalPrice, restocksResultList[i].TotalPrice);
+            }
+
+            //Checks the result is what it is desired to be
+            restocksMock.Verify();
+            restocksMock.Verify(m => m.GetRestock(null, "Help", 1, null), Times.Once);
+        }
+
+        //Testing for get restock with filtering
+        [TestMethod]
+        public async Task TestGetRestockWithCombo2()
+        {
+            //Sets up the controlle rand the method that is to be tested
+            restocksMock.Setup(s => s.GetRestock(null, "Help", null, false)).ReturnsAsync(restocks);
+            var ResController = new RestocksController(restocksMock.Object);
+
+            //Sets up the result from the controller
+            var result = await ResController.GetRestock(null, "Help", null, false);
+
+            //Checks the response data section by section
+            Assert.IsNotNull(result);
+            var objResult = result as OkObjectResult;
+            Assert.IsNotNull(objResult);
+            var restocksResult = objResult.Value as IEnumerable<Restocks>;
+            Assert.IsNotNull(restocksResult);
+            var restocksResultList = restocksResult.ToList();
+            Assert.AreEqual(restocks.Count, restocksResultList.Count);
+            for (int i = 0; i < restocks.Count; ++i)
+            {
+                Assert.AreEqual(restocks[i].SupplierID, restocksResultList[i].SupplierID);
+                Assert.AreEqual(restocks[i].AccountName, restocksResultList[i].AccountName);
+                Assert.AreEqual(restocks[i].Approved, restocksResultList[i].Approved);
+                Assert.AreEqual(restocks[i].Date, restocksResultList[i].Date);
+                Assert.AreEqual(restocks[i].Gty, restocksResultList[i].Gty);
+                Assert.AreEqual(restocks[i].ProductEan, restocksResultList[i].ProductEan);
+                Assert.AreEqual(restocks[i].ProductID, restocksResultList[i].ProductID);
+                Assert.AreEqual(restocks[i].Approved, restocksResultList[i].Approved);
+                Assert.AreEqual(restocks[i].ProductName, restocksResultList[i].ProductName);
+                Assert.AreEqual(restocks[i].RestockId, restocksResultList[i].RestockId);
+                Assert.AreEqual(restocks[i].TotalPrice, restocksResultList[i].TotalPrice);
+            }
+
+            //Checks the result is what it is desired to be
+            restocksMock.Verify();
+            restocksMock.Verify(m => m.GetRestock(null, "Help", null, false), Times.Once);
+        }
+
+        //Testing for get restock with filtering
+        [TestMethod]
+        public async Task TestGetRestockWithCombo3()
+        {
+            //Sets up the controlle rand the method that is to be tested
+            restocksMock.Setup(s => s.GetRestock(null, null, 2, true)).ReturnsAsync(restocks);
+            var ResController = new RestocksController(restocksMock.Object);
+
+            //Sets up the result from the controller
+            var result = await ResController.GetRestock(null, null, 2, true);
+
+            //Checks the response data section by section
+            Assert.IsNotNull(result);
+            var objResult = result as OkObjectResult;
+            Assert.IsNotNull(objResult);
+            var restocksResult = objResult.Value as IEnumerable<Restocks>;
+            Assert.IsNotNull(restocksResult);
+            var restocksResultList = restocksResult.ToList();
+            Assert.AreEqual(restocks.Count, restocksResultList.Count);
+            for (int i = 0; i < restocks.Count; ++i)
+            {
+                Assert.AreEqual(restocks[i].SupplierID, restocksResultList[i].SupplierID);
+                Assert.AreEqual(restocks[i].AccountName, restocksResultList[i].AccountName);
+                Assert.AreEqual(restocks[i].Approved, restocksResultList[i].Approved);
+                Assert.AreEqual(restocks[i].Date, restocksResultList[i].Date);
+                Assert.AreEqual(restocks[i].Gty, restocksResultList[i].Gty);
+                Assert.AreEqual(restocks[i].ProductEan, restocksResultList[i].ProductEan);
+                Assert.AreEqual(restocks[i].ProductID, restocksResultList[i].ProductID);
+                Assert.AreEqual(restocks[i].Approved, restocksResultList[i].Approved);
+                Assert.AreEqual(restocks[i].ProductName, restocksResultList[i].ProductName);
+                Assert.AreEqual(restocks[i].RestockId, restocksResultList[i].RestockId);
+                Assert.AreEqual(restocks[i].TotalPrice, restocksResultList[i].TotalPrice);
+            }
+
+            //Checks the result is what it is desired to be
+            restocksMock.Verify();
+            restocksMock.Verify(m => m.GetRestock(null, null, 2, true), Times.Once);
         }
     }
 }
