@@ -39,7 +39,7 @@ namespace RestockingMicroService.Proxies
 
         public Task<List<Products>> GetSupplierProducts(int Id)
         {
-            return Task.FromResult(products);
+            return Task.FromResult(products.FindAll(a => a.Id == Id));
         }
     }
 

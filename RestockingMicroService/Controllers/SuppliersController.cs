@@ -20,16 +20,16 @@ namespace RestockingMicroService.Controllers
 
         // GET: api/Suppliers
         [HttpGet("/GetAllSuppliers")]
-        public async Task<ActionResult<IEnumerable<Suppliers>>> GetSuppliers()
+        public async Task<IActionResult> GetSuppliers()
         {
             return Ok(await suppliers.GetSuppliers());
         }
 
         // GET: api/Suppliers/5
         [HttpGet("/GetSupplierProducts/{id}")]
-        public async Task<List<Products>> GetSupplierProducts(int id)
+        public async Task<IActionResult> GetSupplierProducts(int id)
         {
-            return await suppliers.GetSupplierProducts(id);
+            return Ok(await suppliers.GetSupplierProducts(id));
         }
     }
 }
