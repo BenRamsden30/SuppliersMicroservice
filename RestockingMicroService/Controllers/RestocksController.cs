@@ -10,7 +10,7 @@ namespace RestockingMicroService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Policy = "ManegerOAuthorised")]
+    //[Authorize]
     public class RestocksController : ControllerBase
     {
         private readonly RestocksInterface restocks;
@@ -25,30 +25,30 @@ namespace RestockingMicroService.Controllers
         public async Task<IActionResult> CreateRestock(string AccountName, int ProductID, int Qty, string ProductName, string ProductEan, double TotalPrice, int SupplierID)
         {
             await restocks.CreateRestock(AccountName, ProductID, Qty, ProductName, ProductEan, TotalPrice, SupplierID);
-            return Ok();
+            return Ok(restocks);
         }
 
         [HttpPost("/DeleteRestock/{Id}")]
-        public async Task<Restocks> DeleteRestock(int Id)
+        public async Task<IActionResult> DeleteRestock(int Id)
         {
-            //return await restocks.DeleteRestock(Id);
-            throw new NotImplementedException();
+            await restocks.DeleteRestock(Id);
+            return Ok();
         }
 
         [HttpGet("/GetRestocks")]
-        public async Task<ActionResult<IEnumerable<Restocks>>> GetRestocks()
+        public async Task<IActionResult> GetRestocks()
         {
-            return await restocks.GetRestocks();
+            return Ok(await restocks.GetRestocks());
         }
 
         [HttpGet("/GetRestock")]
-        public async Task<List<Restocks>> GetRestock(int? Id, string AccountName, int? SupplierID, bool? Approved)
+        public async Task<IActionResult> GetRestock(int? Id, string AccountName, int? SupplierID, bool? Approved)
         {
-            return await restocks.GetRestock(Id, AccountName, SupplierID, Approved);
+            return Ok(await restocks.GetRestock(Id, AccountName, SupplierID, Approved));
         }
 
         [HttpPost("/UpdateRestock/{Id}")]
-        public async Task<List<Restocks>> UpdateRestock(int Id,
+        public async Task<IActionResult> UpdateRestock(int Id,
                                                         string AccountName,
                                                         int? ProductID,
                                                         int? Qty,
@@ -59,7 +59,7 @@ namespace RestockingMicroService.Controllers
                                                         string CardNumber,
                                                         bool? Approved)
         {
-            return await restocks.UpdateRestock(Id, AccountName, ProductID, Qty, ProductName, ProductEan, TotalPrice, SupplierID, CardNumber, Approved);
+            return Ok(await restocks.UpdateRestock(Id, AccountName, ProductID, Qty, ProductName, ProductEan, TotalPrice, SupplierID, CardNumber, Approved));
         }
     }
 }

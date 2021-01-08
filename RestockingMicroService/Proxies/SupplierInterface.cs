@@ -1,7 +1,5 @@
 ﻿using RestockingMicroService.Data;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace RestockingMicroService.Proxies

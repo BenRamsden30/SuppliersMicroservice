@@ -161,11 +161,11 @@ namespace RestockingMicroService.Test
         public async Task TestGetSupplierProductsFailing()
         {
             //Sets up the controlle rand the method that is to be tested
-            suppliersMock.Setup(s => s.GetSupplierProducts(-3)).ReturnsAsync(products);
+            suppliersMock.Setup(s => s.GetSupplierProducts(3)).ReturnsAsync(products);
             var ResController = new SuppliersController(suppliersMock.Object);
 
             //Sets up the result from the controller
-            var result = await ResController.GetSupplierProducts(-3);
+            var result = await ResController.GetSupplierProducts(3);
 
             //Checks the response data section by section
             Assert.IsNotNull(result);
@@ -179,22 +179,22 @@ namespace RestockingMicroService.Test
             //Nesting all the individul values
             for (int i = 0; i < products.Count; ++i)
             {
-                Assert.AreEqual(products[i].Id, productsResultList[i].Id);
-                Assert.AreEqual(products[i].Description, productsResultList[i].Description);
-                Assert.AreEqual(products[i].Name, productsResultList[i].Name);
-                Assert.AreEqual(products[i].BrandId, productsResultList[i].BrandId);
-                Assert.AreEqual(products[i].BrandName, productsResultList[i].BrandName);
-                Assert.AreEqual(products[i].CategoryId, productsResultList[i].CategoryId);
-                Assert.AreEqual(products[i].CategoryName, productsResultList[i].CategoryName);
-                Assert.AreEqual(products[i].Ean, productsResultList[i].Ean);
-                Assert.AreEqual(products[i].ExpectedRestock, productsResultList[i].ExpectedRestock);
-                Assert.AreEqual(products[i].InStock, productsResultList[i].InStock);
-                Assert.AreEqual(products[i].Price, productsResultList[i].Price);
+                Assert.AreEqual(products[i].Id, null);
+                Assert.AreEqual(products[i].Description, null);
+                Assert.AreEqual(products[i].Name, null);
+                Assert.AreEqual(products[i].BrandId, null);
+                Assert.AreEqual(products[i].BrandName, null);
+                Assert.AreEqual(products[i].CategoryId, null);
+                Assert.AreEqual(products[i].CategoryName, null);
+                Assert.AreEqual(products[i].Ean, null);
+                Assert.AreEqual(products[i].ExpectedRestock, null);
+                Assert.AreEqual(products[i].InStock, null);
+                Assert.AreEqual(products[i].Price, null);
             }
 
             //Checks the result is what it is desired to be
             suppliersMock.Verify();
-            suppliersMock.Verify(m => m.GetSupplierProducts(-3), Times.Once);
+            suppliersMock.Verify(m => m.GetSupplierProducts(3), Times.Once);
         }
     }
 }
