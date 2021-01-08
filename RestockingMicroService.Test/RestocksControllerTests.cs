@@ -189,7 +189,7 @@ namespace RestockingMicroService.Test
 
             //Checks the result is what it is desired to be
             restocksMock.Verify();
-            restocksMock.Verify(m => m.GetRestock(1, null, "Help", null), Times.Once);
+            restocksMock.Verify(m => m.GetRestock(0, null, 1, null), Times.Once);
         }
 
         //Testing for get restock with filtering
