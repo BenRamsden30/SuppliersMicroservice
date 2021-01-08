@@ -27,6 +27,6 @@ namespace RestockingMicroService.Data
 
         public bool InStock { get; set; }
 
-        public DateTime ExpectedRestock { get; set; }
+        public DateTime? ExpectedRestock { get; set; } 
     }
 }

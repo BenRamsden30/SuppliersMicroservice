@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RestockingMicroService.Data;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -29,13 +27,23 @@ namespace RestockingMicroService.Proxies
 
         public async Task<List<Products>> GetSupplierProducts(int Id)
         {
-            var Sup = await _context.Suppliers.FirstOrDefaultAsync(s => s.SupplierID == Id);
-            string Address = Sup.Webaddress;
+            //var Sup = await _context.Suppliers.FirstOrDefaultAsync(s => s.SupplierID == Id);
+            //string Address = Sup.Webaddress.ToString();
+            string Address = "abc";
+            if (Id == 2)
+            {
+                Address = "http://undercutters.azurewebsites.net/";
+            }
+            else
+            {
+                Address = "http://dodgydealers.azurewebsites.net/";
+            }
+
 
             //Builds the location to be aimed for
             var client = new HttpClient();
             var RequestBuilder = new UriBuilder(Address);
-            RequestBuilder.Path = "/Api/Product";
+            RequestBuilder.Path = "api/Product/";
             String url = RequestBuilder.ToString();
 
             //Checks to see if the deisred location was reached
@@ -43,13 +51,12 @@ namespace RestockingMicroService.Proxies
             var response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
-            {
+            { 
                 return await response.Content.ReadAsAsync<List<Products>>();
             }
-            else
-            {
-                return null;
-            }
+            
+            return null;
+            
             
         }
 
