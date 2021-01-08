@@ -21,7 +21,7 @@ jobs:
         dotnet-version: '3.1.102'
 
     - name: Clean
-      run: dotnet clean ./RestockingMicroService/RestockingMicroService.sln --configuration Release && dotnet nuget locals all --clear
+      run: dotnet clean --configuration Release && dotnet nuget locals all --clear
 
     - name: Build with dotnet
       run: dotnet build --configuration Release
