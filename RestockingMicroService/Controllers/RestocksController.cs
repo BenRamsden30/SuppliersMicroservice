@@ -28,7 +28,7 @@ namespace RestockingMicroService.Controllers
             return Ok();
         }
 
-        [HttpPost("/DeleteRestock/(id)")]
+        [HttpPost("/DeleteRestock/{Id}")]
         public async Task<Restocks> DeleteRestock(int Id)
         {
             //return await restocks.DeleteRestock(Id);
@@ -41,13 +41,13 @@ namespace RestockingMicroService.Controllers
             return await restocks.GetRestocks();
         }
 
-        [HttpGet("/GetRestock/(id)")]
+        [HttpGet("/GetRestock")]
         public async Task<List<Restocks>> GetRestock(int? Id, string AccountName, int? SupplierID, bool? Approved)
         {
             return await restocks.GetRestock(Id, AccountName, SupplierID, Approved);
         }
 
-        [HttpPost("/UpdateRestock/(id)")]
+        [HttpPost("/UpdateRestock/{Id}")]
         public async Task<List<Restocks>> UpdateRestock(int Id,
                                                         string AccountName,
                                                         int? ProductID,
