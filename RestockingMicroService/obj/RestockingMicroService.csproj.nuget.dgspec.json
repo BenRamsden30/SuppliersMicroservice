@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ben-R\\source\\repos\\RestockingMicroService\\RestockingMicroService\\RestockingMicroService.csproj": {}
+    "C:\\Users\\Ben-R\\Source\\Repos\\SuppliersMicroservice2\\RestockingMicroService\\RestockingMicroService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ben-R\\source\\repos\\RestockingMicroService\\RestockingMicroService\\RestockingMicroService.csproj": {
+    "C:\\Users\\Ben-R\\Source\\Repos\\SuppliersMicroservice2\\RestockingMicroService\\RestockingMicroService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ben-R\\source\\repos\\RestockingMicroService\\RestockingMicroService\\RestockingMicroService.csproj",
+        "projectUniqueName": "C:\\Users\\Ben-R\\Source\\Repos\\SuppliersMicroservice2\\RestockingMicroService\\RestockingMicroService.csproj",
         "projectName": "RestockingMicroService",
-        "projectPath": "C:\\Users\\Ben-R\\source\\repos\\RestockingMicroService\\RestockingMicroService\\RestockingMicroService.csproj",
+        "projectPath": "C:\\Users\\Ben-R\\Source\\Repos\\SuppliersMicroservice2\\RestockingMicroService\\RestockingMicroService.csproj",
         "packagesPath": "C:\\Users\\Ben-R\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ben-R\\source\\repos\\RestockingMicroService\\RestockingMicroService\\obj\\",
+        "outputPath": "C:\\Users\\Ben-R\\Source\\Repos\\SuppliersMicroservice2\\RestockingMicroService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ben-R\\AppData\\Roaming\\NuGet\\NuGet.Config",

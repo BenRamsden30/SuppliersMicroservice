@@ -98,7 +98,6 @@ namespace RestockingMicroService.Proxies
                 Up.ProductName = ProductName;
                 Up.SupplierID = (int)SupplierID;
                 Up.Date = DateTime.Now;
-                Up.CardNumber = CardNumber;
                 Up.AccountName = AccountName;
                 Up.Approved = (bool)Approved;
 
@@ -161,7 +160,7 @@ namespace RestockingMicroService.Proxies
 
         public Task CreateRestock(string AccountName, int ProductID, int Qty, string ProductName, string ProductEan, double TotalPrice, int SupplierID)
         {
-            Restocks Order = new Restocks { AccountName = AccountName, ProductID = ProductID, CardNumber = null, Approved = false, Date = DateTime.Now, Gty = Qty, ProductEan = ProductEan, ProductName = ProductName, SupplierID = SupplierID, TotalPrice = TotalPrice };
+            Restocks Order = new Restocks { AccountName = AccountName, ProductID = ProductID, Approved = false, Date = DateTime.Now, Gty = Qty, ProductEan = ProductEan, ProductName = ProductName, SupplierID = SupplierID, TotalPrice = TotalPrice };
             _context.Restocks.Add(Order);
             return Task.FromResult(Order);
         }
