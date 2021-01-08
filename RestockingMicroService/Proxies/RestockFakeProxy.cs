@@ -42,26 +42,16 @@ namespace RestockingMicroService.Proxies
 
         Task<List<Restocks>> RestocksInterface.GetRestock(int? Id, string AccountName, int? SupplierID, bool? Approved)
         {
-            if (Id.HasValue)
-            {
-                var d = restocks.Find(a => a.RestockId == Id);
-                Desired.Add(d);
-            }
-            if (AccountName != null)
-            {
-                var d = restocks.Find(a => a.AccountName == AccountName);
-                Desired.Add(d);
-            }
-            if (SupplierID != null)
-            {
-                var d = restocks.Find(a => a.SupplierID == SupplierID);
-                Desired.Add(d);
-            }
-            if (Approved != null)
-            {
-                var d = restocks.Find(a => a.Approved == Approved);
-                Desired.Add(d);
-            }
+            Desired = restocks.Where(d =>
+            (!Id.HasValue || d.RestockId == Id.Value)
+            &&
+            (String.IsNullOrEmpty(AccountName) || d.AccountName == AccountName)
+            &&
+            (!SupplierID.HasValue || d.SupplierID == SupplierID.Value)
+            &&
+            (!Approved.HasValue || d.Approved == Approved.Value)
+            ).ToList();
+            
 
             return Task.FromResult(Desired);
         }

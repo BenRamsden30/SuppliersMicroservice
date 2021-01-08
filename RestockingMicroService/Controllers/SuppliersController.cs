@@ -22,7 +22,7 @@ namespace RestockingMicroService.Controllers
         [HttpGet("/GetAllSuppliers")]
         public async Task<ActionResult<IEnumerable<Suppliers>>> GetSuppliers()
         {
-            return await suppliers.GetSuppliers();
+            return Ok(await suppliers.GetSuppliers());
         }
 
         // GET: api/Suppliers/5
