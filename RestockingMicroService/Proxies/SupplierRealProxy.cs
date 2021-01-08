@@ -27,17 +27,8 @@ namespace RestockingMicroService.Proxies
 
         public async Task<List<Products>> GetSupplierProducts(int Id)
         {
-            //var Sup = await _context.Suppliers.FirstOrDefaultAsync(s => s.SupplierID == Id);
-            //string Address = Sup.Webaddress.ToString();
-            string Address = "abc";
-            if (Id == 2)
-            {
-                Address = "http://undercutters.azurewebsites.net/";
-            }
-            else
-            {
-                Address = "http://dodgydealers.azurewebsites.net/";
-            }
+            var Sup = await _context.Suppliers.FirstOrDefaultAsync(s => s.SupplierID == Id);
+            string Address = Sup.Webaddress.ToString();
 
 
             //Builds the location to be aimed for
