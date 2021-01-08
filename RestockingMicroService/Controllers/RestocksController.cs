@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http;
 using Microsoft.AspNetCore.Mvc;
 using RestockingMicroService.Data;
 using RestockingMicroService.Proxies;
@@ -10,7 +11,7 @@ namespace RestockingMicroService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class RestocksController : ControllerBase
     {
         private readonly RestocksInterface restocks;
