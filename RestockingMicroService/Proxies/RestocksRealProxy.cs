@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.SignalR.Client.Http;
+﻿
 using Microsoft.EntityFrameworkCore;
 using RestockingMicroService.Data;
 using System;

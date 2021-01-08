@@ -10,8 +10,8 @@ using RestockingMicroService.Data;
 namespace RestockingMicroService.Migrations
 {
     [DbContext(typeof(RestockingMicroServiceContext))]
-    [Migration("20210108133030_Attempt2")]
-    partial class Attempt2
+    [Migration("20210108202755_Creation")]
+    partial class Creation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

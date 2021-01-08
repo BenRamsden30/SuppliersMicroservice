@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RestockingMicroService.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Creation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,6 @@ namespace RestockingMicroService.Migrations
                     RestockId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AccountName = table.Column<string>(nullable: true),
-                    CardNumber = table.Column<string>(maxLength: 16, nullable: true),
                     ProductID = table.Column<int>(nullable: false),
                     Gty = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
