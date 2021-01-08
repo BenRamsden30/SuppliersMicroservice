@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestockingMicroService.Data;
 
 namespace RestockingMicroService.Migrations
 {
     [DbContext(typeof(RestockingMicroServiceContext))]
-    partial class RestockingMicroServiceContextModelSnapshot : ModelSnapshot
+    [Migration("20210108133030_Attempt2")]
+    partial class Attempt2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
