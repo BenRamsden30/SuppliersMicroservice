@@ -37,7 +37,7 @@ namespace RestockingMicroService.Proxies
         }
 
 
-        Task<List<Products>> SupplierInterface.GetSupplierProducts(int Id)
+        public Task<List<Products>> GetSupplierProducts(int Id)
         {
             return Task.FromResult(products);
         }
