@@ -48,7 +48,16 @@ namespace RestockingMicroService.Controllers
         }
 
         [HttpPost("/UpdateRestock/(id)")]
-        public async Task<List<Restocks>> UpdateRestock(int Id, string AccountName, int? ProductID, int? Qty, string ProductName, string ProductEan, double? TotalPrice, int? SupplierID, string CardNumber, bool? Approved)
+        public async Task<List<Restocks>> UpdateRestock(int Id,
+                                                        string AccountName,
+                                                        int? ProductID,
+                                                        int? Qty,
+                                                        string ProductName,
+                                                        string ProductEan,
+                                                        double? TotalPrice,
+                                                        int? SupplierID,
+                                                        string CardNumber,
+                                                        bool? Approved)
         {
             return await restocks.UpdateRestock(Id, AccountName, ProductID, Qty, ProductName, ProductEan, TotalPrice, SupplierID, CardNumber, Approved);
         }

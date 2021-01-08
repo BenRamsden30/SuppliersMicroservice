@@ -40,7 +40,7 @@ namespace RestockingMicroService.Proxies
             return Task.FromResult(restocks);
         }
 
-        Task<List<Restocks>> RestocksInterface.GetRestock(int? Id, string AccountName, int? SupplierID, bool? Approved)
+        public Task<List<Restocks>> GetRestock(int? Id, string AccountName, int? SupplierID, bool? Approved)
         {
             Desired = restocks.Where(d =>
             (!Id.HasValue || d.RestockId == Id.Value)
@@ -56,7 +56,7 @@ namespace RestockingMicroService.Proxies
             return Task.FromResult(Desired);
         }
 
-        Task<List<Restocks>> RestocksInterface.UpdateRestock(int Id, string AccountName, int? ProductID, int? Qty, string ProductName, string ProductEan, double? TotalPrice, int? SupplierID, string CardNumber, bool? Approved)
+        public Task<List<Restocks>> UpdateRestock(int Id, string AccountName, int? ProductID, int? Qty, string ProductName, string ProductEan, double? TotalPrice, int? SupplierID, string CardNumber, bool? Approved)
         {
             var rm = restocks.Find(c => c.RestockId == Id);
             restocks.Remove(rm);
