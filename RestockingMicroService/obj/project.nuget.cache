@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "obCkO6WzxIf6F1NX8XiMgDsDFgmlnow9rZ6gS/Wvhx90wFCC2taAoduuIIMRerj5C2Az9ykmpjJfQ91lOYxrsQ==",
+  "dgSpecHash": "SnYZMqtq78y7UCZIoQFVj3OVMllTiBs/dejUs6pL8QZM+WZ4KSvzYbbKQmhibZ45tKZXE//MsOQJ3bMbfXyo3A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ben-R\\source\\repos\\RestockingMicroService\\RestockingMicroService\\RestockingMicroService.csproj",
+  "projectFilePath": "C:\\Users\\Ben-R\\Source\\Repos\\SuppliersMicroservice2\\RestockingMicroService\\RestockingMicroService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ben-R\\.nuget\\packages\\ben.demystifier\\0.1.2\\ben.demystifier.0.1.2.nupkg.sha512",
     "C:\\Users\\Ben-R\\.nuget\\packages\\httpclientfactorylite\\0.4.0\\httpclientfactorylite.0.4.0.nupkg.sha512",

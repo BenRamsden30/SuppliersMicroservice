@@ -13,9 +13,6 @@ namespace RestockingMicroService.Data
 
         public string AccountName { get; set; }
 
-        [MinLength(16), MaxLength(16)]
-        public string CardNumber { get; set; }
-
         public int ProductID { get; set; }
 
         public int Gty { get; set; }
