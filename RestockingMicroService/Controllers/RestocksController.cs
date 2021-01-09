@@ -23,9 +23,9 @@ namespace RestockingMicroService.Controllers
         }
 
         [HttpPost ("/CreateRestock/")]
-        public async Task<IActionResult> CreateRestock(string AccountName, int ProductID, int Qty, string ProductName, string ProductEan, double TotalPrice, int SupplierID)
+        public async Task<IActionResult> CreateRestock(string AccountName, int ProductID, int Qty, int SupplierID)
         {
-            await restocks.CreateRestock(AccountName, ProductID, Qty, ProductName, ProductEan, TotalPrice, SupplierID);
+            await restocks.CreateRestock(AccountName, ProductID, Qty, SupplierID);
             return Ok(restocks);
         }
 

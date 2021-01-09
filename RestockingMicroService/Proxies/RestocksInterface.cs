@@ -18,9 +18,9 @@ namespace RestockingMicroService.Proxies
         public Task CreateRestock(string AccountName,
                                   int ProductID,
                                   int Qty,
-                                  string ProductName,
-                                  string ProductEan,
-                                  double TotalPrice,
+                                  
+                                  
+                                  
                                   int SupplierID);
 
         public Task DeleteRestock(int Id);

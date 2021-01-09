@@ -158,11 +158,38 @@ namespace RestockingMicroService.Proxies
             _context.Restocks.Remove(Rm);
         }
 
-        public Task CreateRestock(string AccountName, int ProductID, int Qty, string ProductName, string ProductEan, double TotalPrice, int SupplierID)
+        public async Task CreateRestock(string AccountName, int ProductID, int Qty, int SupplierID)
         {
+            string ProductEan = "";
+            string ProductName ="";
+            double TotalPrice = 0.00;
+
+            var Sup = await _context.Suppliers.FirstOrDefaultAsync(s => s.SupplierID == SupplierID);
+            string Address = Sup.Webaddress.ToString();
+
+
+            //Builds the location to be aimed for
+            var client = new HttpClient();
+            var RequestBuilder = new UriBuilder(Address);
+            RequestBuilder.Path = "api/Product/" + ProductID.ToString();
+            String url = RequestBuilder.ToString();
+
+            //Checks to see if the deisred location was reached
+            client.DefaultRequestHeaders.Accept.ParseAdd("application/json");
+            var response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Products product = await response.Content.ReadAsAsync<Products>();
+                ProductEan = product.Ean;
+                ProductName =product.Name;
+                TotalPrice = (Qty * product.Price);
+            }
+
+            
             Restocks Order = new Restocks { AccountName = AccountName, ProductID = ProductID, Approved = false, Date = DateTime.Now, Gty = Qty, ProductEan = ProductEan, ProductName = ProductName, SupplierID = SupplierID, TotalPrice = TotalPrice };
             _context.Restocks.Add(Order);
-            return Task.FromResult(Order);
+            
         }
     }
 }
