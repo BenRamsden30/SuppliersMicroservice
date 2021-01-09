@@ -76,7 +76,7 @@ namespace RestockingMicroService.Test
         [TestMethod]
         public async Task TestUpdateRestockValidd()
         {
-            await testFake.UpdateRestock(1, null, 1, 6, "Test Update Item 1", "What is this?", 27.50, 1, null, true);
+            await testFake.UpdateRestock(1, null, null, true);
             Assert.AreEqual(2, restocks.Count);
             Assert.AreEqual("Help", restocks[0].AccountName);
             Assert.AreEqual(true, restocks[0].Approved);
