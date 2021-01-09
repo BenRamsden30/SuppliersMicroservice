@@ -160,8 +160,8 @@ namespace RestockingMicroService.Proxies
 
         public async Task CreateRestock(string AccountName, int ProductID, int Qty, int SupplierID)
         {
-            string ProductEan = "";
-            string ProductName ="";
+            string ProductEan = null;
+            string ProductName =null;
             double TotalPrice = 0.00;
 
             var Sup = await _context.Suppliers.FirstOrDefaultAsync(s => s.SupplierID == SupplierID);

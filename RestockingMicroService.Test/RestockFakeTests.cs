@@ -66,6 +66,27 @@ namespace RestockingMicroService.Test
             Assert.AreEqual(2, restocks.Count);
         }
 
+        [TestMethod]
+        public async Task TestCreateRestockValid()
+        {
+            await testFake.CreateRestock("Test", 1, 2, 1);
+            Assert.AreEqual(3, restocks.Count);
+        }
+
+        [TestMethod]
+        public async Task TestUpdateRestockValidd()
+        {
+            await testFake.UpdateRestock(1, null, 1, 6, "Test Update Item 1", "What is this?", 27.50, 1, null, true);
+            Assert.AreEqual(2, restocks.Count);
+            Assert.AreEqual("Help", restocks[0].AccountName);
+            Assert.AreEqual(true, restocks[0].Approved);
+            Assert.AreEqual(18, restocks[0].Gty);
+            Assert.AreEqual(6, restocks[0].ProductID);
+            Assert.AreEqual("Still don't know", restocks[0].ProductEan);
+            Assert.AreEqual("Item test 2", restocks[0].ProductName);
+            Assert.AreEqual(69.69, restocks[0].TotalPrice);
+            Assert.AreEqual(2, restocks[0].SupplierID);
+        }
 
     }
 }
