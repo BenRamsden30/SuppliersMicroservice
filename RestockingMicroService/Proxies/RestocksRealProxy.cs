@@ -95,7 +95,7 @@ namespace RestockingMicroService.Proxies
                 
                 Up.Date = DateTime.Now;
                 Up.AccountName = AccountName;
-                Up.Approved = Approved.Value;
+                Up.Approved = (Approved.HasValue ? Approved.Value : Up.Approved);
 
                 if (Up.Approved == true)
                 {

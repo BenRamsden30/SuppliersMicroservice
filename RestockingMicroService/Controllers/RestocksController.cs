@@ -7,7 +7,7 @@ namespace RestockingMicroService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class RestocksController : ControllerBase
     {
         private readonly RestocksInterface restocks;
