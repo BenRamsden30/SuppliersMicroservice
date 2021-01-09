@@ -166,6 +166,8 @@ namespace RestockingMicroService.Proxies
 
             var Sup = await _context.Suppliers.FirstOrDefaultAsync(s => s.SupplierID == SupplierID);
             string Address = Sup.Webaddress.ToString();
+            //string Address = "http://undercutters.azurewebsites.net/";
+            //ProductID = 2;
 
 
             //Builds the location to be aimed for
@@ -194,7 +196,6 @@ namespace RestockingMicroService.Proxies
 
             _context.Restocks.Add(Order);
             _context.SaveChanges();
-            
         }
     }
 }

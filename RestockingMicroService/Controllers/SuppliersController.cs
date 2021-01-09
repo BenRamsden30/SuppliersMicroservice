@@ -9,7 +9,7 @@ namespace RestockingMicroService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class SuppliersController : ControllerBase
     {
         private readonly SupplierInterface suppliers;
