@@ -156,6 +156,7 @@ namespace RestockingMicroService.Proxies
                 var response2 = await client.GetAsync(url);
             }
             _context.Restocks.Remove(Rm);
+            _context.SaveChangesAsync();
         }
 
         public async Task CreateRestock(string AccountName, int ProductID, int Qty, int SupplierID)
@@ -195,7 +196,7 @@ namespace RestockingMicroService.Proxies
 
 
             _context.Restocks.Add(Order);
-            _context.SaveChanges();
+            _context.SaveChangesAsync();
         }
     }
 }

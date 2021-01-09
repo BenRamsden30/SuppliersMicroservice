@@ -29,6 +29,7 @@ namespace RestockingMicroService.Proxies
         {
             var Sup = await _context.Suppliers.FirstOrDefaultAsync(s => s.SupplierID == Id);
             string Address = Sup.Webaddress.ToString();
+            //string Address = "http://undercutters.azurewebsites.net/";
 
 
             //Builds the location to be aimed for
@@ -45,7 +46,7 @@ namespace RestockingMicroService.Proxies
             { 
                 return await response.Content.ReadAsAsync<List<Products>>();
             }
-            
+
             return null;
             
             
