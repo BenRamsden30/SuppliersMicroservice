@@ -24,6 +24,7 @@ namespace RestockingMicroService.Migrations
                     b.Property<int>("RestockId")
                         .ValueGeneratedOnAdd()
                         .ValueGeneratedOnAdd()
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
