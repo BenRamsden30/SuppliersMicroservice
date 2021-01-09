@@ -27,12 +27,6 @@ namespace RestockingMicroService.Proxies
 
         public Task UpdateRestock(int Id,
                                   string? AccountName,
-                                  int? ProductID,
-                                  int? Qty,
-                                  string? ProductName,
-                                  string? ProductEan,
-                                  double? TotalPrice,
-                                  int? SupplierID,
                                   string? CardNumber,
                                   bool? Approved);
     }

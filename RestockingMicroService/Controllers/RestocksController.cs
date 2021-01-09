@@ -47,16 +47,10 @@ namespace RestockingMicroService.Controllers
         [HttpPost("/UpdateRestock/{Id}")]
         public async Task<IActionResult> UpdateRestock(int Id,
                                                         [FromForm] string AccountName,
-                                                        [FromForm] int? ProductID,
-                                                        [FromForm]  int? Qty,
-                                                        [FromForm]  string ProductName,
-                                                        [FromForm]  string ProductEan,
-                                                        [FromForm]  double? TotalPrice,
-                                                        [FromForm]  int? SupplierID,
                                                         [FromForm]  string CardNumber,
                                                         [FromForm]  bool? Approved)
         {
-            await restocks.UpdateRestock(Id, AccountName, ProductID, Qty, ProductName, ProductEan, TotalPrice, SupplierID, CardNumber, Approved);
+            await restocks.UpdateRestock(Id, AccountName, CardNumber, Approved);
             return Ok();
         }
     }

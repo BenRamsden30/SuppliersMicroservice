@@ -51,7 +51,7 @@ namespace RestockingMicroService.Proxies
         }
 
 
-        public async Task UpdateRestock(int Id, string AccountName, int? ProductID, int? Qty, string ProductName, string ProductEan, double? TotalPrice, int? SupplierID, string CardNumber, bool? Approved)
+        public async Task UpdateRestock(int Id, string AccountName, string CardNumber, bool? Approved)
         {
             var Up = await _context.Restocks.FirstOrDefaultAsync(a => a.RestockId == Id);
             var Sup = await _context.Suppliers.FirstOrDefaultAsync(s => s.SupplierID == Up.SupplierID);
@@ -85,22 +85,17 @@ namespace RestockingMicroService.Proxies
                 Updates.Add(new KeyValuePair<string, string>("Id", Id.ToString()));
                 Updates.Add(new KeyValuePair<string, string>("AccountName", AccountName));
                 Updates.Add(new KeyValuePair<string, string>("CardNumber", CardNumber));
-                Updates.Add(new KeyValuePair<string, string>("Quantity", Qty.ToString()));
+                Updates.Add(new KeyValuePair<string, string>("Quantity", Up.Gty.ToString()));
                 Updates.Add(new KeyValuePair<string, string>("When", DateTime.Now.ToString()));
-                Updates.Add(new KeyValuePair<string, string>("ProductName", ProductName));
-                Updates.Add(new KeyValuePair<string, string>("ProductEan", ProductEan));
-                Updates.Add(new KeyValuePair<string, string>("TotalPrice", TotalPrice.ToString()));
-
-
-                Up.ProductID = (int)ProductID;
-                Up.Gty = (int)Qty;
-                Up.ProductEan = ProductEan;
-                Up.TotalPrice = (double)TotalPrice;
-                Up.ProductName = ProductName;
-                Up.SupplierID = (int)SupplierID;
+                Updates.Add(new KeyValuePair<string, string>("ProductName", Up.ProductName));
+                Updates.Add(new KeyValuePair<string, string>("ProductEan", Up.ProductEan));
+                Updates.Add(new KeyValuePair<string, string>("TotalPrice", Up.TotalPrice.ToString()));
+                
+              
+                
                 Up.Date = DateTime.Now;
                 Up.AccountName = AccountName;
-                Up.Approved = (bool)Approved;
+                Up.Approved = Approved.Value;
 
                 if (Up.Approved == true)
                 {
@@ -111,10 +106,12 @@ namespace RestockingMicroService.Proxies
                     var clientPost = new HttpClient();
                     await clientPost.PostAsync(urlPost, new FormUrlEncodedContent(Updates));
                     _context.Update(Up);
+                    await _context.SaveChangesAsync();
                 }
                 else
                 {
                     _context.Update(Up);
+                    await _context.SaveChangesAsync();
                 }
             }
 
@@ -156,7 +153,7 @@ namespace RestockingMicroService.Proxies
                 var response2 = await client.GetAsync(url);
             }
             _context.Restocks.Remove(Rm);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task CreateRestock(string AccountName, int ProductID, int Qty, int SupplierID)
@@ -196,7 +193,7 @@ namespace RestockingMicroService.Proxies
 
 
             _context.Restocks.Add(Order);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
     }
 }

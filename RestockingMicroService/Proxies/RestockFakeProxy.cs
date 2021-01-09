@@ -61,11 +61,12 @@ namespace RestockingMicroService.Proxies
             return Task.FromResult(Desired);
         }
 
-        public Task UpdateRestock(int Id, string AccountName, int? ProductID, int? Qty, string ProductName, string ProductEan, double? TotalPrice, int? SupplierID, string CardNumber, bool? Approved)
+        public Task UpdateRestock(int Id, string AccountName, string CardNumber, bool? Approved)
         {
             var rm = restocks.Find(c => c.RestockId == Id);
+            
             restocks.Remove(rm);
-            restocks.Add(new Restocks { RestockId = Id, AccountName = AccountName, ProductID = (int)ProductID, ProductEan = ProductEan, ProductName = ProductName, Date = DateTime.Now, Gty = (int)Qty, SupplierID = (int)SupplierID, TotalPrice = (double)TotalPrice, Approved = (bool)Approved });
+            restocks.Add(new Restocks { RestockId = Id, AccountName = AccountName, ProductID = rm.ProductID, ProductEan = rm.ProductEan.ToString(), ProductName = rm.ProductName, Date = DateTime.Now, Gty = rm.Gty, SupplierID = rm.SupplierID, TotalPrice = rm.TotalPrice, Approved = (bool)Approved });
             return Task.FromResult(restocks);
         }
     }
