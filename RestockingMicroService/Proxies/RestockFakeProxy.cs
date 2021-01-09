@@ -21,6 +21,11 @@ namespace RestockingMicroService.Proxies
             };
         }
 
+        public RestockFakeProxy(List<Restocks> restocks)
+        {
+            this.restocks = restocks;
+        }
+
         public Task CreateRestock(string AccountName, int ProductID, int Qty, int SupplierID)
         {
             restocks.Add(new Restocks { RestockId = 3, AccountName = null, ProductID = 3, Gty = 27, Date = DateTime.Now, ProductEan = "I give up", ProductName = "TAdded", SupplierID = 1, TotalPrice = 42.00, Approved = false });

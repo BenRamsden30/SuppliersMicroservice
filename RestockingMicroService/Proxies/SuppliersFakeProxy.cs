@@ -25,6 +25,11 @@ namespace RestockingMicroService.Proxies
                 new Products { Id = 2, BrandId = 2, BrandName = "Me", CategoryId = 2, CategoryName = "HMe", Description = "This is no longer fun", Ean = "Still don't know what this is", ExpectedRestock = DateTime.Now, InStock = false, Name = "Trainers", Price = 99.99 }
             };
         }
+        public SuppliersFakeProxy(List<Suppliers> suppliers, List<Products> products)
+        {
+            this.suppliers = suppliers;
+            this.products = products;
+        }
 
         public Task<List<Suppliers>> GetSuppliers()
         {

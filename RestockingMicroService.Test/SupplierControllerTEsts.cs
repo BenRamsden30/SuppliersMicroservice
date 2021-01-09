@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace RestockingMicroService.Test
 {
     [TestClass]
-    public class UnitTest1
+    public class RestocksControllerTests
     {
         private List<Suppliers> suppliers;
         private List<Products> products;

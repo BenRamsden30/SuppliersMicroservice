@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace RestockingMicroService.Test
 {
     [TestClass]
-    public class SupplierControllerTEsts
+    public class RestocksControllerTEsts
     {
 
         private Mock<RestocksInterface> restocksMock;
