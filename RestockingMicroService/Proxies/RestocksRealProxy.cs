@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestockingMicroService.Data;
 using System;
@@ -50,7 +51,7 @@ namespace RestockingMicroService.Proxies
         }
 
 
-        public async Task<List<Restocks>> UpdateRestock(int Id, string AccountName, int? ProductID, int? Qty, string ProductName, string ProductEan, double? TotalPrice, int? SupplierID, string CardNumber, bool? Approved)
+        public async Task UpdateRestock(int Id, string AccountName, int? ProductID, int? Qty, string ProductName, string ProductEan, double? TotalPrice, int? SupplierID, string CardNumber, bool? Approved)
         {
             var Up = await _context.Restocks.FirstOrDefaultAsync(a => a.RestockId == Id);
             var Sup = await _context.Suppliers.FirstOrDefaultAsync(s => s.SupplierID == Up.SupplierID);
@@ -69,7 +70,7 @@ namespace RestockingMicroService.Proxies
                 var responseGet = await client.GetAsync(urlGet);
 
                 //The Order is present
-                while(responseGet.IsSuccessStatusCode)
+                while (responseGet.IsSuccessStatusCode)
                 {
                     //Setting up a delete for the order adn deleting it
                     var RequestBuilderDelete = new UriBuilder(Address);
@@ -90,7 +91,7 @@ namespace RestockingMicroService.Proxies
                 Updates.Add(new KeyValuePair<string, string>("ProductEan", ProductEan));
                 Updates.Add(new KeyValuePair<string, string>("TotalPrice", TotalPrice.ToString()));
 
-                
+
                 Up.ProductID = (int)ProductID;
                 Up.Gty = (int)Qty;
                 Up.ProductEan = ProductEan;
@@ -101,7 +102,7 @@ namespace RestockingMicroService.Proxies
                 Up.AccountName = AccountName;
                 Up.Approved = (bool)Approved;
 
-                if(Up.Approved == true)
+                if (Up.Approved == true)
                 {
                     var RequestBuilderPost = new UriBuilder(Address);
                     RequestBuilderPost.Path = "POST/Api/Order/";
@@ -111,7 +112,7 @@ namespace RestockingMicroService.Proxies
                     await clientPost.PostAsync(urlPost, new FormUrlEncodedContent(Updates));
                     _context.Update(Up);
                 }
-                else 
+                else
                 {
                     _context.Update(Up);
                 }
@@ -122,7 +123,6 @@ namespace RestockingMicroService.Proxies
                 throw new InvalidOperationException("There is no restock under this restockID");
             }
 
-            return await _context.Restocks.ToListAsync();
         }
 
 

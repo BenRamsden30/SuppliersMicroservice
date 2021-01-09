@@ -60,7 +60,8 @@ namespace RestockingMicroService.Controllers
                                                         string CardNumber,
                                                         bool? Approved)
         {
-            return Ok(await restocks.UpdateRestock(Id, AccountName, ProductID, Qty, ProductName, ProductEan, TotalPrice, SupplierID, CardNumber, Approved));
+            await restocks.UpdateRestock(Id, AccountName, ProductID, Qty, ProductName, ProductEan, TotalPrice, SupplierID, CardNumber, Approved);
+            return Ok();
         }
     }
 }

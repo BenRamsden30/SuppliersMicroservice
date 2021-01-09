@@ -56,7 +56,7 @@ namespace RestockingMicroService.Proxies
             return Task.FromResult(Desired);
         }
 
-        public Task<List<Restocks>> UpdateRestock(int Id, string AccountName, int? ProductID, int? Qty, string ProductName, string ProductEan, double? TotalPrice, int? SupplierID, string CardNumber, bool? Approved)
+        public Task UpdateRestock(int Id, string AccountName, int? ProductID, int? Qty, string ProductName, string ProductEan, double? TotalPrice, int? SupplierID, string CardNumber, bool? Approved)
         {
             var rm = restocks.Find(c => c.RestockId == Id);
             restocks.Remove(rm);

@@ -14,7 +14,7 @@ namespace RestockingMicroService.Test
     [TestClass]
     public class SupplierControllerTEsts
     {
-        
+
         private Mock<RestocksInterface> restocksMock;
         List<Restocks> restocks;
 
@@ -53,8 +53,8 @@ namespace RestockingMicroService.Test
             for (int i = 0; i < restocks.Count; ++i)
             {
                 Assert.AreEqual(restocks[i].SupplierID, restocksResultList[i].SupplierID);
-                Assert.AreEqual(restocks[i].AccountName ,restocksResultList[i].AccountName );
-                Assert.AreEqual(restocks[i].Approved , restocksResultList[i].Approved);
+                Assert.AreEqual(restocks[i].AccountName, restocksResultList[i].AccountName);
+                Assert.AreEqual(restocks[i].Approved, restocksResultList[i].Approved);
                 Assert.AreEqual(restocks[i].Date, restocksResultList[i].Date);
                 Assert.AreEqual(restocks[i].Gty, restocksResultList[i].Gty);
                 Assert.AreEqual(restocks[i].ProductEan, restocksResultList[i].ProductEan);
@@ -85,7 +85,7 @@ namespace RestockingMicroService.Test
             Assert.IsNotNull(result);
             var objResult = result as OkObjectResult;
             Assert.IsNull(objResult);
-            
+
 
             //Checks the result is what it is desired to be
             restocksMock.Verify();
@@ -425,5 +425,96 @@ namespace RestockingMicroService.Test
             restocksMock.Verify();
             restocksMock.Verify(m => m.GetRestock(null, null, 2, true), Times.Once);
         }
+
+        //Testing for Create restock when valid data is passed
+        [TestMethod]
+        public async Task TestCreaterestockValid()
+        {
+            //Sets up the controlle rand the method that is to be tested
+            restocksMock.Setup(s => s.CreateRestock("Test", 1, 2, 1)).Returns(Task.Run(() => { }));
+            var ResController = new RestocksController(restocksMock.Object);
+
+            //Sets up the result from the controller
+            var result = await ResController.CreateRestock("Test", 1, 2, 1);
+
+            //Checks the response data section by section
+            Assert.IsNotNull(result);
+            var objResult = result as OkObjectResult;
+            Assert.IsNotNull(objResult);
+
+
+            //Checks the result is what it is desired to be
+            restocksMock.Verify();
+            restocksMock.Verify(m => m.CreateRestock("Test", 1, 2, 1), Times.Once);
+        }
+
+
+
+        //Testing for Create restock when passed bad data
+        [TestMethod]
+        public async Task TestCreaterestockBadData()
+        {
+            //Sets up the controlle rand the method that is to be tested
+            restocksMock.Setup(s => s.CreateRestock(null, -1, -2, -1)).Returns(Task.Run(() => { }));
+            var ResController = new RestocksController(restocksMock.Object);
+
+            //Sets up the result from the controller
+            var result = await ResController.CreateRestock(null, -1, -2, -1);
+
+            //Checks the response data section by section
+            Assert.IsNotNull(result);
+            var objResult = result as OkObjectResult;
+            Assert.IsNotNull(objResult);
+
+
+            //Checks the result is what it is desired to be
+            restocksMock.Verify();
+            restocksMock.Verify(m => m.CreateRestock(null, -1, -2, -1), Times.Once);
+        }
+
+        //Testing for Update restock with valid data
+        [TestMethod]
+        public async Task TestUpdateRestockValid()
+        {
+            //Sets up the controlle rand the method that is to be tested
+            restocksMock.Setup(s => s.UpdateRestock(1, null, 1, 6, "Test Update Item 1", "What is this?", 27.50, 1, null, true)).Returns(Task.Run(() => { }));
+            var ResController = new RestocksController(restocksMock.Object);
+
+            //Sets up the result from the controller
+            var result = await ResController.UpdateRestock(1, null, 1, 6, "Test Update Item 1", "What is this?", 27.50, 1, null, true);
+
+            //Checks the response data section by section
+            Assert.IsNotNull(result);
+            var objResult = result as OkObjectResult;
+            Assert.IsNull(objResult);
+            
+
+            //Checks the result is what it is desired to be
+            restocksMock.Verify();
+            restocksMock.Verify(m => m.UpdateRestock(1, null, 1, 6, "Test Update Item 1", "What is this?", 27.50, 1, null, true), Times.Once);
+        }
+
+        //Testing for Update restock with invalid data
+        [TestMethod]
+        public async Task TestUpdateRestockInValid()
+        {
+            //Sets up the controlle rand the method that is to be tested
+            restocksMock.Setup(s => s.UpdateRestock(-6, null, -1, -6, "Bad Update Test", "Bad Test", 27.50, 1, null, true)).Returns(Task.Run(() => { }));
+            var ResController = new RestocksController(restocksMock.Object);
+
+            //Sets up the result from the controller
+            var result = await ResController.UpdateRestock(-6, null, -1, -6, "Bad Update Test", "Bad Test", 27.50, 1, null, true);
+
+            //Checks the response data section by section
+            Assert.IsNotNull(result);
+            var objResult = result as OkObjectResult;
+            Assert.IsNull(objResult);
+
+
+            //Checks the result is what it is desired to be
+            restocksMock.Verify();
+            restocksMock.Verify(m => m.UpdateRestock(-6, null, -1, -6, "Bad Update Test", "Bad Test", 27.50, 1, null, true), Times.Once);
+        }
     }
 }
+

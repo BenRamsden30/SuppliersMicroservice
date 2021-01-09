@@ -25,7 +25,7 @@ namespace RestockingMicroService.Proxies
 
         public Task DeleteRestock(int Id);
 
-        public Task <List<Restocks>> UpdateRestock(int Id,
+        public Task UpdateRestock(int Id,
                                   string? AccountName,
                                   int? ProductID,
                                   int? Qty,
