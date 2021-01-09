@@ -187,8 +187,13 @@ namespace RestockingMicroService.Proxies
             }
 
             
-            Restocks Order = new Restocks { AccountName = AccountName, ProductID = ProductID, Approved = false, Date = DateTime.Now, Gty = Qty, ProductEan = ProductEan, ProductName = ProductName, SupplierID = SupplierID, TotalPrice = TotalPrice };
+            Restocks Order = new Restocks { AccountName = AccountName, ProductID = ProductID, 
+                Approved = false, Date = DateTime.Now, Gty = Qty, ProductEan = ProductEan, ProductName = ProductName, 
+                SupplierID = SupplierID, TotalPrice = TotalPrice };
+
+
             _context.Restocks.Add(Order);
+            _context.SaveChanges();
             
         }
     }

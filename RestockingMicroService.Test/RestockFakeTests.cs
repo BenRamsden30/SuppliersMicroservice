@@ -88,6 +88,196 @@ namespace RestockingMicroService.Test
             Assert.AreEqual(2, restocks[0].SupplierID);
         }
 
+        [TestMethod]
+        public async Task TestGetRestockBlank()
+        {
+            var result = await testFake.GetRestock(null, null, null, null);
+
+            Assert.AreEqual(2, result.Count);
+            for (int i = 0; i < restocks.Count; ++i)
+            {
+                Assert.AreEqual(restocks[i].SupplierID, result[i].SupplierID);
+                Assert.AreEqual(restocks[i].AccountName, result[i].AccountName);
+                Assert.AreEqual(restocks[i].Approved, result[i].Approved);
+                Assert.AreEqual(restocks[i].Date, result[i].Date);
+                Assert.AreEqual(restocks[i].Gty, result[i].Gty);
+                Assert.AreEqual(restocks[i].ProductEan, result[i].ProductEan);
+                Assert.AreEqual(restocks[i].ProductID, result[i].ProductID);
+                Assert.AreEqual(restocks[i].Approved, result[i].Approved);
+                Assert.AreEqual(restocks[i].ProductName, result[i].ProductName);
+                Assert.AreEqual(restocks[i].RestockId, result[i].RestockId);
+                Assert.AreEqual(restocks[i].TotalPrice, result[i].TotalPrice);
+            }
+        }
+
+        [TestMethod]
+        public async Task TestGetRestockIdValid()
+        {
+            int i = 0;
+            var result = await testFake.GetRestock(1, null, null, null);
+
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(restocks[i].SupplierID, result[i].SupplierID);
+            Assert.AreEqual(restocks[i].AccountName, result[i].AccountName);
+            Assert.AreEqual(restocks[i].Approved, result[i].Approved);
+            Assert.AreEqual(restocks[i].Date, result[i].Date);
+            Assert.AreEqual(restocks[i].Gty, result[i].Gty);
+            Assert.AreEqual(restocks[i].ProductEan, result[i].ProductEan);
+            Assert.AreEqual(restocks[i].ProductID, result[i].ProductID);
+            Assert.AreEqual(restocks[i].Approved, result[i].Approved);
+            Assert.AreEqual(restocks[i].ProductName, result[i].ProductName);
+            Assert.AreEqual(restocks[i].RestockId, result[i].RestockId);
+            Assert.AreEqual(restocks[i].TotalPrice, result[i].TotalPrice);
+        }
+
+        [TestMethod]
+        public async Task TestGetRestockIdInValid()
+        {
+            var result = await testFake.GetRestock(18, null, null, null);
+
+            Assert.AreEqual(0, result.Count);
+        }
+
+        [TestMethod]
+        public async Task TestGetRestockAccountNameValid()
+        {
+            int i = 0;
+            int r = 1;
+            var result = await testFake.GetRestock(null, "Help", null, null);
+
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(restocks[r].SupplierID, result[i].SupplierID);
+            Assert.AreEqual(restocks[r].AccountName, result[i].AccountName);
+            Assert.AreEqual(restocks[r].Approved, result[i].Approved);
+            Assert.AreEqual(restocks[r].Date, result[i].Date);
+            Assert.AreEqual(restocks[r].Gty, result[i].Gty);
+            Assert.AreEqual(restocks[r].ProductEan, result[i].ProductEan);
+            Assert.AreEqual(restocks[r].ProductID, result[i].ProductID);
+            Assert.AreEqual(restocks[r].Approved, result[i].Approved);
+            Assert.AreEqual(restocks[r].ProductName, result[i].ProductName);
+            Assert.AreEqual(restocks[r].RestockId, result[i].RestockId);
+            Assert.AreEqual(restocks[r].TotalPrice, result[i].TotalPrice);
+        }
+
+        [TestMethod]
+        public async Task TestGetRestockAccountNameInValid()
+        {
+            var result = await testFake.GetRestock(null, "Error", null, null);
+
+            Assert.AreEqual(0, result.Count);
+        }
+
+        [TestMethod]
+        public async Task TestGetRestockProductIDValid()
+        {
+            int i = 0;
+            int r = 0;
+            var result = await testFake.GetRestock(null, null, 1, null);
+
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(restocks[r].SupplierID, result[i].SupplierID);
+            Assert.AreEqual(restocks[r].AccountName, result[i].AccountName);
+            Assert.AreEqual(restocks[r].Approved, result[i].Approved);
+            Assert.AreEqual(restocks[r].Date, result[i].Date);
+            Assert.AreEqual(restocks[r].Gty, result[i].Gty);
+            Assert.AreEqual(restocks[r].ProductEan, result[i].ProductEan);
+            Assert.AreEqual(restocks[r].ProductID, result[i].ProductID);
+            Assert.AreEqual(restocks[r].Approved, result[i].Approved);
+            Assert.AreEqual(restocks[r].ProductName, result[i].ProductName);
+            Assert.AreEqual(restocks[r].RestockId, result[i].RestockId);
+            Assert.AreEqual(restocks[r].TotalPrice, result[i].TotalPrice);
+        }
+
+        [TestMethod]
+        public async Task TestGetRestockProductIDInValid()
+        {
+            var result = await testFake.GetRestock(null, null, 18, null);
+
+            Assert.AreEqual(0, result.Count);
+        }
+
+        [TestMethod]
+        public async Task TestGetRestockApprovedValid()
+        {
+            int i = 0;
+            int r = 0;
+            var result = await testFake.GetRestock(null, null, null, false);
+
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(restocks[r].SupplierID, result[i].SupplierID);
+            Assert.AreEqual(restocks[r].AccountName, result[i].AccountName);
+            Assert.AreEqual(restocks[r].Approved, result[i].Approved);
+            Assert.AreEqual(restocks[r].Date, result[i].Date);
+            Assert.AreEqual(restocks[r].Gty, result[i].Gty);
+            Assert.AreEqual(restocks[r].ProductEan, result[i].ProductEan);
+            Assert.AreEqual(restocks[r].ProductID, result[i].ProductID);
+            Assert.AreEqual(restocks[r].Approved, result[i].Approved);
+            Assert.AreEqual(restocks[r].ProductName, result[i].ProductName);
+            Assert.AreEqual(restocks[r].RestockId, result[i].RestockId);
+            Assert.AreEqual(restocks[r].TotalPrice, result[i].TotalPrice);
+        }
+
+        [TestMethod]
+        public async Task TestGetRestockCombo1Valid()
+        {
+            int i = 0;
+            int r = 1;
+            var result = await testFake.GetRestock(null, "Help", null, true);
+
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(restocks[r].SupplierID, result[i].SupplierID);
+            Assert.AreEqual(restocks[r].AccountName, result[i].AccountName);
+            Assert.AreEqual(restocks[r].Approved, result[i].Approved);
+            Assert.AreEqual(restocks[r].Date, result[i].Date);
+            Assert.AreEqual(restocks[r].Gty, result[i].Gty);
+            Assert.AreEqual(restocks[r].ProductEan, result[i].ProductEan);
+            Assert.AreEqual(restocks[r].ProductID, result[i].ProductID);
+            Assert.AreEqual(restocks[r].Approved, result[i].Approved);
+            Assert.AreEqual(restocks[r].ProductName, result[i].ProductName);
+            Assert.AreEqual(restocks[r].RestockId, result[i].RestockId);
+            Assert.AreEqual(restocks[r].TotalPrice, result[i].TotalPrice);
+        }
+
+        [TestMethod]
+        public async Task TestGetRestockCombo2Valid()
+        {
+            int i = 0;
+            int r = 1;
+            var result = await testFake.GetRestock(null, "Help", 2, null);
+
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(restocks[r].SupplierID, result[i].SupplierID);
+            Assert.AreEqual(restocks[r].AccountName, result[i].AccountName);
+            Assert.AreEqual(restocks[r].Approved, result[i].Approved);
+            Assert.AreEqual(restocks[r].Date, result[i].Date);
+            Assert.AreEqual(restocks[r].Gty, result[i].Gty);
+            Assert.AreEqual(restocks[r].ProductEan, result[i].ProductEan);
+            Assert.AreEqual(restocks[r].ProductID, result[i].ProductID);
+            Assert.AreEqual(restocks[r].Approved, result[i].Approved);
+            Assert.AreEqual(restocks[r].ProductName, result[i].ProductName);
+            Assert.AreEqual(restocks[r].RestockId, result[i].RestockId);
+            Assert.AreEqual(restocks[r].TotalPrice, result[i].TotalPrice);
+        }
+
+        [TestMethod]
+        public async Task TestGetRestockCombo3Valid()
+        {
+            int i = 0;
+            int r = 0;
+            var result = await testFake.GetRestock(null, null, 1, false);
+
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(restocks[r].SupplierID, result[i].SupplierID);
+            Assert.AreEqual(restocks[r].AccountName, result[i].AccountName);
+            Assert.AreEqual(restocks[r].Approved, result[i].Approved);
+            Assert.AreEqual(restocks[r].Date, result[i].Date);
+            Assert.AreEqual(restocks[r].Gty, result[i].Gty);
+            Assert.AreEqual(restocks[r].ProductEan, result[i].ProductEan);
+            Assert.AreEqual(restocks[r].ProductID, result[i].ProductID);
+            Assert.AreEqual(restocks[r].Approved, result[i].Approved);
+            Assert.AreEqual(restocks[r].ProductName, result[i].ProductName);
+            Assert.AreEqual(restocks[r].RestockId, result[i].RestockId);
+            Assert.AreEqual(restocks[r].TotalPrice, result[i].TotalPrice);
+        }
     }
 }
-
