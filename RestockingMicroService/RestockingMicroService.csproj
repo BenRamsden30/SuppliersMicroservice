@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210109215336_FixedSpellingError.cs" />
+    <Compile Remove="Migrations\20210109215336_FixedSpellingError.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="HttpClientFactoryLite" Version="0.4.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.1" />

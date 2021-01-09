@@ -53,7 +53,7 @@ namespace RestockingMicroService
                             );
                     }));
 
-            if (Enviro.IsDevelopment())
+            if (!Enviro.IsDevelopment())
             {
                 services.AddSingleton<SupplierInterface, SuppliersFakeProxy>();
                 services.AddSingleton<RestocksInterface, RestockFakeProxy>();
