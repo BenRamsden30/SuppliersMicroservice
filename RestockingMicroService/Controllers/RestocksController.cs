@@ -19,7 +19,7 @@ namespace RestockingMicroService.Controllers
         }
 
         [HttpPost ("/CreateRestock/")]
-        public async Task<IActionResult> CreateRestock(string AccountName, int ProductID, int Qty, int SupplierID)
+        public async Task<IActionResult> CreateRestock([FromForm] string AccountName, [FromForm] int ProductID, [FromForm] int Qty, [FromForm]  int SupplierID)
         {
             await restocks.CreateRestock(AccountName, ProductID, Qty, SupplierID);
             return Ok(restocks);
@@ -46,15 +46,15 @@ namespace RestockingMicroService.Controllers
 
         [HttpPost("/UpdateRestock/{Id}")]
         public async Task<IActionResult> UpdateRestock(int Id,
-                                                        string AccountName,
-                                                        int? ProductID,
-                                                        int? Qty,
-                                                        string ProductName,
-                                                        string ProductEan,
-                                                        double? TotalPrice,
-                                                        int? SupplierID,
-                                                        string CardNumber,
-                                                        bool? Approved)
+                                                        [FromForm] string AccountName,
+                                                        [FromForm] int? ProductID,
+                                                        [FromForm]  int? Qty,
+                                                        [FromForm]  string ProductName,
+                                                        [FromForm]  string ProductEan,
+                                                        [FromForm]  double? TotalPrice,
+                                                        [FromForm]  int? SupplierID,
+                                                        [FromForm]  string CardNumber,
+                                                        [FromForm]  bool? Approved)
         {
             await restocks.UpdateRestock(Id, AccountName, ProductID, Qty, ProductName, ProductEan, TotalPrice, SupplierID, CardNumber, Approved);
             return Ok();
